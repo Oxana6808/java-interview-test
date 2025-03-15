@@ -422,33 +422,6 @@ window.onload = () => {
         console.log("Showing results, mistakes:", mistakeHistory);
     }
 
-
-    // // Показ результатов
-    // function showResults() {
-    //     if (testContainer) testContainer.style.display = 'none';
-    //     if (resultContainer) resultContainer.style.display = 'block';
-    //
-    //     if (resultBody) {
-    //         resultBody.innerHTML = '';
-    //         currentQuestions.forEach((question, index) => {
-    //             if (mistakeHistory.has(index)) {
-    //                 const tr = document.createElement('tr');
-    //                 tr.innerHTML = `
-    //                     <td>${currentLanguage === 'ru' ? question.questionRu : question.questionEn}</td>
-    //                     <td>${currentLanguage === 'ru' ? question.answerRu : question.answerEn}</td>
-    //                 `;
-    //                 resultBody.appendChild(tr);
-    //             }
-    //         });
-    //         if (mistakeHistory.size === 0) {
-    //             resultBody.innerHTML = `<tr><td colspan="2">${currentLanguage === 'ru' ? 'Ошибок нет! Отличная работа!' : 'No mistakes! Great job!'}</td></tr>`;
-    //         } else if (mistakeHistory.size === currentQuestions.length) {
-    //             resultBody.innerHTML = `<tr><td colspan="2">${currentLanguage === 'ru' ? 'Все ответы неверные!' : 'All answers are wrong!'}</td></tr>`;
-    //         }
-    //     }
-    //     console.log("Showing results, mistakes:", mistakeHistory);
-    // }
-
     // Остановка теста
     function stopQuiz() {
         if (stopBtn) {
