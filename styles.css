@@ -1,140 +1,125 @@
+/* Общие стили */
 body {
-    font-family: Arial, sans-serif;
-    background-color: rgba(165, 187, 211, 0.66);
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #E8ECEF, #D5DCE5); /* Плавный серо-синий градиент для внешнего фона */
     margin: 0;
     padding: 0;
-    min-height: 100vh; /* Минимальная высота для фона */
+    color: #333333; /* Темно-серый текст */
+    min-height: 100vh;
 }
 
-.container {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 800px;
-    margin: 0 auto; /* Центрирование по горизонтали */
-    padding-top: 100px; /* Отступ сверху для фиксированной шапки */
-}
-
-/* Фиксация шапки */
-#title, #quiz-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: white;
-    z-index: 1000;
-    padding: 10px 20px;
-    margin: 0;
+h1#title {
+    font-size: 2.5em;
     text-align: center;
-    box-sizing: border-box;
+    background: #2E2F2F; /* Темно-серый для шапки */
+    color: white;
+    padding: 15px 0;
+    margin: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
 .language-buttons {
-    position: fixed;
-    top: 50px;
-    left: 0;
-    width: 100%;
-    background-color: white;
-    z-index: 1000;
-    padding: 10px 20px;
     text-align: center;
-    box-sizing: border-box;
+    margin: 10px 0;
 }
 
 .language-buttons button {
+    padding: 5px 15px;
     margin: 0 5px;
-    padding: 5px 10px;
+    border: none;
+    background: #538135; /* Зеленый, вдохновленный Java */
+    color: #FFFFFF; /* Белый текст для контраста */
     cursor: pointer;
-    border: 1px solid #ccc;
+    font-size: 1em;
     border-radius: 5px;
-    background-color: #e0e0e0;
+    transition: background 0.3s;
 }
 
-.language-buttons .active {
-    background-color: #4caf50;
-    color: white;
-    border-color: #4caf50;
+.language-buttons button:not(.active) {
+    background: #B0B7B0; /* Светло-серый для неактивного языка */
+    color: #4A704A;
 }
 
-#theme-selection, #question-container, #result {
-    margin-top: 20px;
+.language-buttons button.active {
+    background: #538135; /* Зеленый для активного языка */
+    color: #FFFFFF;
+    font-weight: bold;
 }
 
-.topic-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+/* Контейнер тем */
+#theme-selection {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #FFFFFF; /* Белый фон для контейнера */
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Легкая тень для выделения */
+}
+
+#topics-title {
+    font-size: 1.8em;
+    text-align: center; /* Центрируем "List of Topics" */
+    color: #333333;
+    margin-bottom: 20px;
 }
 
 .topic-row {
-    display: contents;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
 }
 
-#topicList button {
-    display: block;
-    padding: 10px;
-    margin: 5px 0;
-    background-color: #e0e0e0;
-    border: none;
-    border-radius: 5px;
+.theme-btn {
+    flex: 1;
+    margin: 0 10px;
+    padding: 15px;
+    background: #ECEFF1; /* Бледно-серый для кнопок */
+    color: #333333; /* Темно-серый текст */
+    border: 1px solid #E0E3E1; /* Легкая серая рамка */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     cursor: pointer;
-    text-align: left;
-    transition: background-color 0.3s;
+    font-size: 1.1em;
+    text-align: center; /* Центрируем текст кнопки */
+    transition: transform 0.2s, background 0.3s;
 }
 
-#topicList button:hover {
-    background-color: #d3d3d3;
+.theme-btn .number {
+    color: #B0B7B0; /* Светло-серый для номера */
 }
 
-#topicList .number {
-    margin-right: 10px;
+.theme-btn:hover {
+    background: #E0E3E1; /* Чуть темнее при наведении */
+    transform: translateY(-2px);
 }
 
-#options button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    background-color: #e0e0e0;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.theme-btn:active {
+    transform: translateY(0);
 }
 
-#options button.correct {
-    background-color: #4caf50;
-    color: white;
+/* Контейнер теста */
+#question-container, #result {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #FFFFFF; /* Белый фон для контейнера */
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Легкая тень для выделения */
 }
 
-#options button.wrong {
-    background-color: #f44336;
-    color: white;
+#quiz-title {
+    font-size: 1.5em;
+    text-align: center; /* Центрируем название темы */
+    color: #333333;
+    margin-bottom: 10px;
 }
 
-#stop-btn, #next-or-dont-know-btn, #return-btn {
-    padding: 10px 20px;
-    margin: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: white;
+#level-indicator {
+    text-align: center; /* Центрируем уровень */
+    margin-bottom: 10px;
 }
 
-#stop-btn {
-    background-color: #f44336;
-}
-
-#next-or-dont-know-btn {
-    background-color: #2196f3;
-}
-
-#return-btn {
-    background-color: #1b269a;
-}
-
-.level-circle {
+#level-indicator .level-circle {
     display: inline-block;
     width: 10px;
     height: 10px;
@@ -142,33 +127,113 @@ body {
     margin-right: 5px;
 }
 
-.junior { background-color: green; }
-.middle { background-color: orange; }
-.senior { background-color: red; }
+.level-circle.junior { background: #538135; } /* Зеленый для Junior */
+.level-circle.middle { background: #4A704A; } /* Серо-зеленый для Middle */
+.level-circle.senior { background: #2E2F2F; } /* Темно-серый для Senior */
 
-/* Стили таблицы результатов */
+#question-counter {
+    text-align: center; /* Центрируем номер вопроса */
+    font-size: 1.2em;
+    color: #333333;
+    margin-bottom: 15px;
+}
+
+#question-text {
+    font-size: 1.5em; /* Увеличиваем шрифт вопроса */
+    text-align: center; /* Центрируем вопрос */
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+#options button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background: #F5F6F5; /* Очень бледный серый */
+    border: 1px solid #E8ECE8; /* Легкая серая рамка */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #333333;
+    transition: background 0.3s;
+}
+
+#options button:hover {
+    background: #E8ECE8; /* Чуть более темный серый при наведении */
+}
+
+#options button.correct {
+    background: #538135; /* Зеленый для правильного ответа */
+    color: #FFFFFF;
+}
+
+#options button.wrong {
+    background: #A63C3C; /* Приглушенный красный для неправильного ответа */
+    color: white;
+}
+
+/* Таблица результатов */
 #result-table {
     width: 100%;
-    max-width: 100%;
-    overflow-x: auto;
+    border-collapse: collapse;
+    margin-top: 20px;
 }
 
 #result-table th, #result-table td {
-    border: 1px solid #ccc;
     padding: 10px;
     text-align: left;
+    border-bottom: 1px solid #E8ECE8;
 }
 
 #result-table th {
-    background-color: #e0e0e0;
-    font-weight: bold;
+    background: #2E2F2F; /* Темно-серый для заголовков таблицы */
+    color: white;
 }
 
-#result-table td {
-    background-color: #f9f9f9;
+#result-table tr:nth-child(even) {
+    background: #F5F6F5;
 }
 
-/* Отступ под таблицей */
-#result #return-btn {
-    margin-top: 20px;
+#result-table tr:hover {
+    background: #E8ECE8; /* Серый при наведении */
+}
+
+/* Кнопки управления */
+#stop-btn, #next-or-dont-know-btn, #return-btn {
+    display: block;
+    width: 200px;
+    margin: 10px auto; /* Центрируем кнопки */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s;
+}
+
+#stop-btn {
+    background: #A63C3C; /* Приглушенный красный для кнопки Stop */
+    color: white;
+}
+
+#stop-btn:hover {
+    background: #8F3333; /* Темнее красный при наведении */
+}
+
+#next-or-dont-know-btn, #return-btn {
+    background: #538135; /* Зеленый для кнопок Next и Return */
+    color: white;
+}
+
+#next-or-dont-know-btn:hover, #return-btn:hover {
+    background: #446F2A; /* Темнее зеленый при наведении */
+}
+
+/* Логотип */
+#quiz-header img {
+    vertical-align: middle;
+    margin-left: 10px;
+    width: 40px;
+    height: 40px;
 }
