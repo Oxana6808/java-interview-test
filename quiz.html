@@ -34,10 +34,20 @@
             </thead>
             <tbody id="result-body"></tbody>
         </table>
-        <button onclick="location.href='index.html'">Вернуться в начало</button>
+        <button id="return-btn">Вернуться в начало</button>
     </div>
 </div>
 <script src="data.js"></script>
 <script src="script.js"></script>
+<script>
+    window.onload = () => {
+        updateLanguageButtons();
+        updateButtonText();
+        updateTitle();
+        const urlParams = new URLSearchParams(window.location.search);
+        const category = urlParams.get('category') || "Java Core";
+        startQuiz(decodeURIComponent(category));
+    };
+</script>
 </body>
 </html>

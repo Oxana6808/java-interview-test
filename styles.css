@@ -1,11 +1,9 @@
 body {
     font-family: Arial, sans-serif;
     background-color: rgba(165, 187, 211, 0.66);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Минимальная высота для фона */
 }
 
 .container {
@@ -15,16 +13,34 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 80%;
     max-width: 800px;
+    margin: 0 auto; /* Центрирование по горизонтали */
+    padding-top: 100px; /* Отступ сверху для фиксированной шапки */
+}
+
+/* Фиксация шапки */
+#title, #quiz-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    z-index: 1000;
+    padding: 10px 20px;
+    margin: 0;
     text-align: center;
+    box-sizing: border-box;
 }
 
-h1 {
-    color: #1b269a;
-    margin-bottom: 10px;
-}
-
-h2 {
-    color: #333;
+.language-buttons {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    z-index: 1000;
+    padding: 10px 20px;
+    text-align: center;
+    box-sizing: border-box;
 }
 
 .language-buttons button {
@@ -116,7 +132,6 @@ h2 {
 
 #return-btn {
     background-color: #1b269a;
-
 }
 
 .level-circle {
@@ -134,8 +149,8 @@ h2 {
 /* Стили таблицы результатов */
 #result-table {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+    max-width: 100%;
+    overflow-x: auto;
 }
 
 #result-table th, #result-table td {
@@ -151,4 +166,9 @@ h2 {
 
 #result-table td {
     background-color: #f9f9f9;
+}
+
+/* Отступ под таблицей */
+#result #return-btn {
+    margin-top: 20px;
 }
