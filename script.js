@@ -179,6 +179,7 @@ window.onload = () => {
         if (returnBtn) returnBtn.textContent = currentLanguage === 'ru' ? 'Вернуться в начало' : 'Return to Start';
     }
 
+
     // Рендеринг тем
     function renderTopics() {
         console.log("Rendering topics...");
@@ -187,6 +188,17 @@ window.onload = () => {
             return;
         }
         topicList.innerHTML = '';
+
+        // Подсчитываем количество вопросов для каждой категории
+        const questionCounts = {};
+        categories.forEach(category => {
+            if (category === "All Questions") {
+                questionCounts[category] = questionsData.length;
+            } else {
+                questionCounts[category] = questionsData.filter(q => q.category === category).length;
+            }
+        });
+
         const rows = Math.ceil(categories.length / 3);
         for (let i = 0; i < rows; i++) {
             const row = document.createElement('div');
@@ -200,8 +212,9 @@ window.onload = () => {
                     numberSpan.className = 'number';
                     numberSpan.textContent = `${index + 1}.`;
                     const categoryText = categoryTranslations[categories[index]][currentLanguage];
+                    const count = questionCounts[categories[index]] || 0;
                     button.appendChild(numberSpan);
-                    button.appendChild(document.createTextNode(` ${categoryText}`));
+                    button.appendChild(document.createTextNode(` ${categoryText} (${count})`));
                     button.addEventListener('click', () => startQuiz(categories[index]));
                     row.appendChild(button);
                 }
@@ -389,24 +402,52 @@ window.onload = () => {
 
         if (resultBody) {
             resultBody.innerHTML = '';
-            currentQuestions.forEach((question, index) => {
-                if (mistakeHistory.has(index)) {
-                    const tr = document.createElement('tr');
-                    tr.innerHTML = `
+            if (mistakeHistory.size === 0) {
+                // Если нет ошибок
+                resultBody.innerHTML = `<tr><td colspan="2">${currentLanguage === 'ru' ? 'Ошибок нет! Отличная работа!' : 'No mistakes! Great job!'}</td></tr>`;
+            } else {
+                // Если есть ошибки, отображаем таблицу со всеми ошибками
+                currentQuestions.forEach((question, index) => {
+                    if (mistakeHistory.has(index)) {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
                         <td>${currentLanguage === 'ru' ? question.questionRu : question.questionEn}</td>
                         <td>${currentLanguage === 'ru' ? question.answerRu : question.answerEn}</td>
                     `;
-                    resultBody.appendChild(tr);
-                }
-            });
-            if (mistakeHistory.size === 0) {
-                resultBody.innerHTML = `<tr><td colspan="2">${currentLanguage === 'ru' ? 'Ошибок нет! Отличная работа!' : 'No mistakes! Great job!'}</td></tr>`;
-            } else if (mistakeHistory.size === currentQuestions.length) {
-                resultBody.innerHTML = `<tr><td colspan="2">${currentLanguage === 'ru' ? 'Все ответы неверные!' : 'All answers are wrong!'}</td></tr>`;
+                        resultBody.appendChild(tr);
+                    }
+                });
             }
         }
         console.log("Showing results, mistakes:", mistakeHistory);
     }
+
+
+    // // Показ результатов
+    // function showResults() {
+    //     if (testContainer) testContainer.style.display = 'none';
+    //     if (resultContainer) resultContainer.style.display = 'block';
+    //
+    //     if (resultBody) {
+    //         resultBody.innerHTML = '';
+    //         currentQuestions.forEach((question, index) => {
+    //             if (mistakeHistory.has(index)) {
+    //                 const tr = document.createElement('tr');
+    //                 tr.innerHTML = `
+    //                     <td>${currentLanguage === 'ru' ? question.questionRu : question.questionEn}</td>
+    //                     <td>${currentLanguage === 'ru' ? question.answerRu : question.answerEn}</td>
+    //                 `;
+    //                 resultBody.appendChild(tr);
+    //             }
+    //         });
+    //         if (mistakeHistory.size === 0) {
+    //             resultBody.innerHTML = `<tr><td colspan="2">${currentLanguage === 'ru' ? 'Ошибок нет! Отличная работа!' : 'No mistakes! Great job!'}</td></tr>`;
+    //         } else if (mistakeHistory.size === currentQuestions.length) {
+    //             resultBody.innerHTML = `<tr><td colspan="2">${currentLanguage === 'ru' ? 'Все ответы неверные!' : 'All answers are wrong!'}</td></tr>`;
+    //         }
+    //     }
+    //     console.log("Showing results, mistakes:", mistakeHistory);
+    // }
 
     // Остановка теста
     function stopQuiz() {
