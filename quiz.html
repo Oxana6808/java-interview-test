@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Interview Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <h1 id="quiz-header">Тест по Java</h1>
+    <div class="language-buttons">
+        <button onclick="changeLanguage('ru')" class="active">Русский</button>
+        <button onclick="changeLanguage('en')">English</button>
+    </div>
+    <div id="question-container">
+        <div id="question-counter" style="text-align: center; margin-bottom: 10px;"></div>
+        <h2 id="question-text"></h2>
+        <div id="level-indicator"></div>
+        <div id="options"></div>
+        <div id="action-buttons" style="margin-top: 20px;">
+            <button id="stop-btn" onclick="stopQuiz()">Стоп</button>
+            <button id="next-or-dont-know-btn" onclick="dontKnow()">Не знаю</button>
+        </div>
+    </div>
+    <div id="result" style="display: none;">
+        <h2 id="result-title">Результаты теста</h2>
+        <table id="result-table">
+            <thead>
+            <tr>
+                <th>Вопрос</th>
+                <th>Правильный ответ</th>
+            </tr>
+            </thead>
+            <tbody id="result-body"></tbody>
+        </table>
+        <button onclick="location.href='index.html'">Вернуться в начало</button>
+    </div>
+</div>
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

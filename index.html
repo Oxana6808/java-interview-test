@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест по собеседованию Java</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <h1 id="title">Тест по собеседованию Java ☕</h1>
+    <div class="language-buttons">
+        <button class="btn btn-secondary" onclick="changeLanguage('ru')">Русский</button>
+        <button class="btn btn-success" onclick="changeLanguage('en')">English</button>
+    </div>
+    <div id="theme-selection">
+        <h2 id="topics-title">Список тем</h2>
+        <div id="topicList" class="topic-grid"></div>
+    </div>
+    <div id="question-container" style="display: none;">
+        <h2 id="quiz-title"></h2> <!-- Заголовок теста -->
+        <div id="level-indicator"></div>
+        <p id="question-counter"></p>
+        <p id="question-text"></p>
+        <div id="options"></div>
+        <button id="stop-btn" onclick="stopQuiz()">Стоп</button>
+        <button id="next-or-dont-know-btn" onclick="dontKnow()">Не знаю</button>
+    </div>
+    <div id="result" style="display: none;">
+        <h2 id="result-title">Результаты теста</h2>
+        <table id="result-table">
+            <thead>
+            <tr>
+                <th data-text-ru="Вопрос" data-text-en="Question">Вопрос</th>
+                <th data-text-ru="Правильный ответ" data-text-en="Correct Answer">Правильный ответ</th>
+            </tr>
+            </thead>
+            <tbody id="result-body"></tbody>
+        </table>
+        <button id="return-btn" onclick="returnBtn.click()">Вернуться в начало</button>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
